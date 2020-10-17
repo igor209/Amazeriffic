@@ -5,13 +5,17 @@ controlador.criarusuario = function(req, res){
     
 }
 controlador.autenticarusuario = function(req, res){
-    
+    // PEGO A SENHA MANDADA E AUTENTICO SE FOR AUTENTICADO 
+    // CARREGO A PAGINA DOS TOdOS SE NAO PEÇO PARA TENTAR NOVAMENTE
 }
 controlador.dadosdousuario = function(req, res){
     
 }
 controlador.nomedeusuarios = function(req, res){
 
+}
+controlador.buscarusuarios = function(req, res){
+    res.send("pagina que vai fazer a autenticacao da senha")
 }
 
 

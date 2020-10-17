@@ -156,6 +156,7 @@ var main = function(dados){
 }
 
 $(document).ready(function(){
+    var url = window.location.href
     $.getJSON("dados", function(dados){
         main(dados)
     })

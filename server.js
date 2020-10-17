@@ -11,8 +11,10 @@ http.createServer(app).listen(3000)
 
 app.post("/registrar", controlador.criarusuario)
 app.post("/autenticar", controlador.autenticarusuario)
-app.get("/dados", controlador.dadosdousuario)
+app.get("/:username/dados", controlador.dadosdousuario)
 app.get("nomesdeusuarios", controlador.nomedeusuarios)
+app.get("/:username", controlador.buscarusuario)
+
 
 
 
