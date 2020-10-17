@@ -1,14 +1,18 @@
 var http = require('http'), 
     app, 
     express = require('express'),
-    toDoController = require("./rotas/Controlador_rotas.js"),
-    Users = require("./rotas/Controlador_usuarios.js")
+    controlador = require("./rotas/Controlador_rotas.js"),
     
 app = express()
 app.use(express.static(__dirname +'/cliente'))
 app.use(express.urlencoded())
 
 http.createServer(app).listen(3000)
+
+app.post("/registrar", controlador.criarusuario)
+app.post("/autenticar", controlador.autenticarusuario)
+app.get("/dados", controlador.dadosdousuario)
+app.get("nomesdeusuarios", controlador.nomedeusuarios)
 
 
 

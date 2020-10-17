@@ -1,5 +1,4 @@
 var toDo = require("../dados/conexao_BD.js")
-const userscontroller = require("./Controlador_usuarios.js")
 var controlador = {}
 
 controlador.criarusuario = function(req, res){
@@ -12,7 +11,7 @@ controlador.dadosdousuario = function(req, res){
     
 }
 controlador.nomedeusuarios = function(req, res){
-    
+
 }
 
 
