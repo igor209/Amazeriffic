@@ -1,5 +1,6 @@
 var toDo = require("../dados/conexao_BD.js")
 var controlador = {}
+var usuario = require("../Dados/conexao_BD.js") 
 
 controlador.criarusuario = function(req, res){
     
@@ -15,7 +16,16 @@ controlador.nomedeusuarios = function(req, res){
 
 }
 controlador.buscarusuarios = function(req, res){
-    res.send("pagina que vai fazer a autenticacao da senha")
+    var username = req.params.username
+    usuario.find({"Usuario": username}, function(err, resposta){
+        if(err !== null){
+            res.send(err)
+        }else if(resposta.lenght !== 0){
+            res.send("usuario encontrado")
+        }else{
+            res.send(404)
+        }
+    })
 }
 
 
