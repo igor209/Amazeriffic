@@ -10,4 +10,4 @@ var esquema = mongoose.Schema({
 
 var usuario = mongoose.model("usuario", esquema)
 
-module.exports = toDo
+module.exports = usuario
