@@ -157,7 +157,11 @@ var main = function(dados){
 
 $(document).ready(function(){
     var url = window.location.href
-    $.getJSON("dados", function(dados){
-        main(dados)
+    var urlsplit = url.split("/")
+    var nomedeusuario = urlsplit[urlsplit.length-1]
+    var dados
+    $.post("/"+nomedeusuario+"/dados", {"Usuario": nomedeusuario}, function(response){
+        dados = response
     })
+    main(dados)
 })
