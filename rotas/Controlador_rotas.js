@@ -19,8 +19,10 @@ controlador.autenticarusuario = function(req, res){
     })
 }
 controlador.dadosdousuario = function(req, res){
-    var nome = req.params.nome
-    var nome
+    var usuario = req.body
+    user.findOne(usuario, function(err, resultado){
+        res.json(resultado.tarefas)
+    })
 }
 // controlador.nomedeusuarios = function(req, res){
 
