@@ -1,27 +1,37 @@
-var toDo = require("../dados/conexao_BD.js")
 var controlador = {}
-var usuario = require("../Dados/conexao_BD.js") 
+var user = require("../Dados/conexao_BD.js")
+var path = require("path")
 
 controlador.criarusuario = function(req, res){
-    
+    res.sendFile(path.join(__dirname + '/cliente/Registro.html'))
 }
 controlador.autenticarusuario = function(req, res){
-    // PEGO A SENHA MANDADA E AUTENTICO SE FOR AUTENTICADO 
-    // CARREGO A PAGINA DOS TOdOS SE NAO PEÇO PARA TENTAR NOVAMENTE
+    var senha = req.body.Senha
+    var usuario = req.body.Usuario
+    user.find({"Usuario": usuario, "Senha":senha}, function(err, resposta){
+        if(err !== null){
+            res.send(500)
+        }else if(resposta.length !== 0){
+            res.sendFile(path.join(__dirname + '/cliente/tarefas.html'))
+        }else{
+            res.send(404)
+        }
+    })
 }
 controlador.dadosdousuario = function(req, res){
-    
+    var nome = req.params.nome
+    var nome
 }
-controlador.nomedeusuarios = function(req, res){
+// controlador.nomedeusuarios = function(req, res){
 
-}
+// }
 controlador.buscarusuarios = function(req, res){
     var username = req.params.username
-    usuario.find({"Usuario": username}, function(err, resposta){
+    user.find({"Usuario": username}, function(err, resposta){
         if(err !== null){
-            res.send(err)
-        }else if(resposta.lenght !== 0){
-            res.send("usuario encontrado")
+            res.send(500)
+        }else if(resposta.length !== 0){
+            res.sendFile(path.join(__dirname + '/cliente/login.html'))
         }else{
             res.send(404)
         }

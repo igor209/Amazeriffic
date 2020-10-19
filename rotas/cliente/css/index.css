@@ -1,0 +1,38 @@
+main button {
+    background-color: blue;
+    outline: none;
+    border: none;
+    width: 95px;
+    height: 30px;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 10px;
+    margin: 0 5px 0 5px
+}
+main .registrarusuario{
+    font-size: 19px;
+}
+main input{
+    border: 1px solid gray;
+    width: 200px;
+    height: 20px;
+    text-align: center;
+    outline: none;
+    font-weight: 600;
+    margin: 15px 0 10px 0;
+    border-radius: 10px;
+
+
+}
+main label{
+    font-size: 20px;
+    font-weight: 700;
+}
+main div{
+    display: flex;
+      justify-content: center;
+}
+main{
+    padding: 50px 0 50px 0;
+}
