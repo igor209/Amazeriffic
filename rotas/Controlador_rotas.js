@@ -24,9 +24,9 @@ controlador.dadosdousuario = function(req, res){
         res.json(resultado.tarefas)
     })
 }
-// controlador.nomedeusuarios = function(req, res){
-
-// }
+controlador.registrar = function(req, res){
+    req.body
+}
 controlador.buscarusuarios = function(req, res){
     var username = req.params.username
     user.find({"Usuario": username}, function(err, resposta){

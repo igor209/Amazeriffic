@@ -9,7 +9,8 @@ app.use(express.urlencoded())
 
 http.createServer(app).listen(3000)
 
-app.post("/registrar", controlador.criarusuario)
+app.post("/registrarusuario", controlador.registrar)
+app.get("/registrar", controlador.criarusuario)
 app.post("/autenticar", controlador.autenticarusuario)
 app.post("/:username/dados", controlador.dadosdousuario)
 app.get("/:username", controlador.buscarusuarios)
