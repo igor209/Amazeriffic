@@ -3,6 +3,7 @@ var main = function(){
     $(".entrarcomusuario").on("click", function(){
         var input = $("main input").val()
         $.get("/"+input, function(response){
+            alert(response)
             if(response == 404){
                 alert('usuario nao encontrado')
             }else if(response == 500){

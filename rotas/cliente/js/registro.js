@@ -14,6 +14,9 @@ var main = function(){
         // }
         $.post("/registrarusuario", {"Usuario": nome, "Senha1": senha1, "Senha2": senha2}, function(response){
             alert(response)
+            if(response == "usuario cadastrado com sucesso"){
+                window.location.href = "/"
+            }
         })
 
     })

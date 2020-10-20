@@ -1,10 +1,12 @@
 var main = function(dados){
     "use strict";
-
+    var url = window.location.href
+    var urlsplit = url.split("/")
+    var nomedeusuario = urlsplit[urlsplit.length-1]
    
 
 
-       var toDos = dados.map(function(dado){
+    var toDos = dados.map(function(dado){
         return dado.descricao
     })
 
@@ -16,18 +18,8 @@ var main = function(dados){
     tabs.push({
         "name": "Newest",
         "content": function(callback){
-            
-            $.getJSON("dados", function(dados){
-                $content = $("<ul>")
-                var descricao = dados.map(function(dado){
-                    return dado.descricao
-                })
-                for(var i=descricao.length-1;i>=0;i--){
-                    $content.append($("<li>").text(descricao[i]))
-                }
 
                 callback($content)
-            })
             
         }
     })
@@ -103,9 +95,7 @@ var main = function(dados){
                     tags = $taginput.val().split(",")
 
                 if($("main .content input").val()!=""){
-                        var url = window.location.href
-                        var urlsplit = url.split("/")
-                        var nomedeusuario = urlsplit[urlsplit.length-1]
+                        
                     $.post("/"+nomedeusuario+"/gravardados", {"descricao": descripition, "tags": tags}, function(response){
                         $input.val("")
                         $taginput.val("")
