@@ -14,6 +14,7 @@ app.get("/registrar", controlador.criarusuario)
 app.post("/autenticar", controlador.autenticarusuario)
 app.post("/:username/dados", controlador.dadosdousuario)
 app.get("/:username", controlador.buscarusuarios)
+app.post("/:username/gravardados", controlador.gravardados)
 
 
 

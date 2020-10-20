@@ -1,6 +1,9 @@
 var controlador = {}
 var user = require("../Dados/conexao_BD.js")
 var path = require("path")
+var bcrypt = require("bcrypt")
+const { response } = require("express")
+var salt = bcrypt.genSaltSync(10)
 
 controlador.criarusuario = function(req, res){
     res.sendFile(path.join(__dirname + '/cliente/Registro.html'))
@@ -8,24 +11,76 @@ controlador.criarusuario = function(req, res){
 controlador.autenticarusuario = function(req, res){
     var senha = req.body.Senha
     var usuario = req.body.Usuario
-    user.find({"Usuario": usuario, "Senha":senha}, function(err, resposta){
+     user.findOne({"Usuario": usuario}, function(err, resposta){
         if(err !== null){
-            res.send(500)
+            console.log(err)
+            res.sendStatus(500)
         }else if(resposta.length !== 0){
-            res.sendFile(path.join(__dirname + '/cliente/tarefas.html'))
+           bcrypt.compare(senha, resposta.Senha, function(err, validado){
+            if(err){
+                res.sendStatus(404)
+            }else if(!validado){
+                res.sendStatus(404)
+            }else{
+                res.sendFile(path.join(__dirname + '/cliente/tarefas.html'))
+            }
+           })
         }else{
-            res.send(404)
+            res.sendStatus(404)
         }
     })
 }
 controlador.dadosdousuario = function(req, res){
-    var usuario = req.body
-    user.findOne(usuario, function(err, resultado){
-        res.json(resultado.tarefas)
+    var usuario = req.body.Usuario
+    user.findOne({"Usuario":usuario}, function(err, resultado){
+        console.log(resultado.Tarefas)
+        res.send(resultado.Tarefas)
+    })
+}
+controlador.gravardados = function(req, res){
+    var usuario = req.params.username
+    console.log(usuario)
+    var dados = req.body
+    user.findOne({"Usuario":usuario}, function(err, resultado){
+        console.log(resultado)
+        resultado.Tarefas.push(dados)
+        resultado.save(function(err, salvo){
+            if(err){
+                console.log(err)
+            }else if(salvo){
+                console.log(salvo)
+            }
+        })
     })
 }
 controlador.registrar = function(req, res){
-    req.body
+    var usuario = req.body.Usuario
+    var senha1 = req.body.Senha1
+    var senha2 = req.body.Senha2
+    user.find({"Usuario": usuario}, function(err, result){
+        if(err){
+            res.send(err)
+        }else if(result.length !== 0){
+            res.send("Nome de usuario Não disponivel")
+        }else{
+            if(senha1 == senha2){
+                
+                var senhaCriptografada = bcrypt.hashSync(senha1, salt)
+
+                var novousuario = new user({"Usuario": usuario, "Senha": senhaCriptografada, "Tarefas": []})
+                novousuario.save(function(err, result){
+                    if(err !== null){
+                        res.send("erro ao criar usuario")
+                    }else{
+                        res.send("usuario cadastrado com sucesso")
+                    }
+                })
+                
+            }else{
+                res.send("As senhas não batem")
+            }
+        }
+    })
 }
 controlador.buscarusuarios = function(req, res){
     var username = req.params.username

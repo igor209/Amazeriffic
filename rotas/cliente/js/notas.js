@@ -1,8 +1,15 @@
 var main = function(dados){
     "use strict";
-    var toDos= dados.map(function(dado){
+
+   
+
+
+       var toDos = dados.map(function(dado){
         return dado.descricao
     })
+
+
+
     var $content
     var tabs = []
 
@@ -96,8 +103,10 @@ var main = function(dados){
                     tags = $taginput.val().split(",")
 
                 if($("main .content input").val()!=""){
-
-                    $.post("/todos", {"descricao": descripition, "tags": tags}, function(response){
+                        var url = window.location.href
+                        var urlsplit = url.split("/")
+                        var nomedeusuario = urlsplit[urlsplit.length-1]
+                    $.post("/"+nomedeusuario+"/gravardados", {"descricao": descripition, "tags": tags}, function(response){
                         $input.val("")
                         $taginput.val("")
                         $(".tabs a:first-child span").trigger("click")
@@ -109,7 +118,7 @@ var main = function(dados){
                     var descripition = $input.val(),
                     tags = $taginput.val().split(",")
 
-                    $.post("/todos", {"descricao": descripition, "tags": tags}, function(response){ 
+                    $.post("/"+nomedeusuario+"/gravardados", {"descricao": descripition, "tags": tags}, function(response){ 
                         $input.val("")
                         $taginput.val("")
                         $(".tabs a:first-child span").trigger("click")
@@ -154,14 +163,16 @@ var main = function(dados){
 
     $(".tabs a:first-child span").trigger("click")
 }
+function iniciar(){
 
-$(document).ready(function(){
     var url = window.location.href
     var urlsplit = url.split("/")
     var nomedeusuario = urlsplit[urlsplit.length-1]
-    var dados
     $.post("/"+nomedeusuario+"/dados", {"Usuario": nomedeusuario}, function(response){
-        dados = response
+       
+        main(response)
     })
-    main(dados)
-})
+    
+}
+
+$(document).ready(iniciar())

@@ -5,7 +5,7 @@ mongoose.connect('mongodb://localhost/amazeriffic')
 var esquema = mongoose.Schema({
     Usuario: String,
     Senha: String,
-    Tarefas: String
+    Tarefas: [Object]
 })
 
 var user = mongoose.model("usuario", esquema)
