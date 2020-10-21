@@ -1,16 +1,8 @@
-var main = function(dados){
+var main = function(){
     "use strict";
     var url = window.location.href
     var urlsplit = url.split("/")
     var nomedeusuario = urlsplit[urlsplit.length-1]
-   
-
-
-    var toDos = dados.map(function(dado){
-        return dado.descricao
-    })
-
-
 
     var $content
     var tabs = []
@@ -18,20 +10,24 @@ var main = function(dados){
     tabs.push({
         "name": "Newest",
         "content": function(callback){
-
+            $.post("/"+nomedeusuario+"/dados", {"Usuario": nomedeusuario}, function(response){
+                $content = $("<ul>")
+                for(var i = response.length-1; i>=0;i--){
+                    $content.append($("<li>").text(response[i].descricao))
+                }
                 callback($content)
-            
+            })
         }
     })
     tabs.push({
         "name": "Oldest",
         "content": function(callback){
-            $.getJSON("dados", function(dados){
-                $content = $("<ul>")
-               dados.forEach(function(todo){
-                    $content.append($("<li>").text(todo.descricao))
-                })
-                callback($content)
+            $.post("/"+nomedeusuario+"/dados", {"Usuario": nomedeusuario}, function(response){
+                    $content = $("<ul>")
+                    response.forEach(function(todo){
+                        $content.append($("<li>").text(todo.descricao))
+                    })
+                    callback($content)
             })
             
         }
@@ -40,7 +36,7 @@ var main = function(dados){
         "name": "Tags",
         "content": function(callback){
 
-            $.getJSON("dados", function(dados){
+            $.post("/"+nomedeusuario+"/dados", {"Usuario": nomedeusuario}, function(dados){
                 var listadetags = [], arrayfinal = [], listadedescricao = []
                 dados.forEach(function(dado){
                     dado.tags.forEach(function(palavra){
@@ -121,7 +117,6 @@ var main = function(dados){
         
         }
     })
-
     tabs.forEach(function(item){
         var $aElement = $("<a>").attr("href", ""),
             $spanElement = $("<span>").text(item.name)
@@ -153,16 +148,4 @@ var main = function(dados){
 
     $(".tabs a:first-child span").trigger("click")
 }
-function iniciar(){
-
-    var url = window.location.href
-    var urlsplit = url.split("/")
-    var nomedeusuario = urlsplit[urlsplit.length-1]
-    $.post("/"+nomedeusuario+"/dados", {"Usuario": nomedeusuario}, function(response){
-       
-        main(response)
-    })
-    
-}
-
-$(document).ready(iniciar())
+$(document).ready(main())

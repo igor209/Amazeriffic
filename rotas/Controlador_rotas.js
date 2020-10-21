@@ -5,9 +5,6 @@ var bcrypt = require("bcrypt")
 const { response } = require("express")
 var salt = bcrypt.genSaltSync(10)
 
-controlador.criarusuario = function(req, res){
-    res.sendFile(path.join(__dirname + '/cliente/Registro.html'))
-}
 controlador.autenticarusuario = function(req, res){
     var senha = req.body.Senha
     var usuario = req.body.Usuario
@@ -33,8 +30,7 @@ controlador.autenticarusuario = function(req, res){
 controlador.dadosdousuario = function(req, res){
     var usuario = req.body.Usuario
     user.findOne({"Usuario":usuario}, function(err, resultado){
-        console.log(resultado.Tarefas)
-        res.send(resultado.Tarefas)
+        res.json(resultado.Tarefas)
     })
 }
 controlador.gravardados = function(req, res){
@@ -46,9 +42,9 @@ controlador.gravardados = function(req, res){
         resultado.Tarefas.push(dados)
         resultado.save(function(err, salvo){
             if(err){
-                console.log(err)
+                res.send(500)
             }else if(salvo){
-                console.log(salvo)
+                res.send(200)
             }
         })
     })
@@ -86,11 +82,11 @@ controlador.buscarusuarios = function(req, res){
     var username = req.params.username
     user.find({"Usuario": username}, function(err, resposta){
         if(err !== null){
-            res.send(500)
+            res.send('500')
         }else if(resposta.length !== 0){
             res.sendFile(path.join(__dirname + '/cliente/login.html'))
         }else{
-            res.send(404)
+            res.send('404')
         }
     })
 }

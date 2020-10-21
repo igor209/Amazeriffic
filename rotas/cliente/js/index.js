@@ -3,10 +3,9 @@ var main = function(){
     $(".entrarcomusuario").on("click", function(){
         var input = $("main input").val()
         $.get("/"+input, function(response){
-            alert(response)
-            if(response == 404){
+            if(response == '404'){
                 alert('usuario nao encontrado')
-            }else if(response == 500){
+            }else if(response == '500'){
                 alert("erro no servidor, tente novamente mais tarde")
             }else{
                 window.location.href = "/"+input   
