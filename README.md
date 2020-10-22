@@ -9,7 +9,7 @@
   <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript">JS</a></li>
   <li><a href="https://www.mongodb.com/">MongoDB</a></li>
 </ul>
-<h2>Modulos utilizados</h2>
+<h2>Modulos npm utilizados</h2>
 <ul>
   <li><a href="https://www.npmjs.com/package/bcrypt">Bcrypt</a></li>
   <li><a href="https://www.npmjs.com/package/express">Express</a></li>
