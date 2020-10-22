@@ -28,4 +28,4 @@
 <h2>Autor</h2>
 <img src="readme/autor.jpg" width="200" style="border-radius:20px;"alt="foto do autor">
 <h3>Igor Silva</h3>
-<p>Estudante de Programação e fascinado por computação</p>
+<p>Estudante de Programação</p>
