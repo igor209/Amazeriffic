@@ -16,8 +16,9 @@
   <li><a href="https://www.npmjs.com/package/mongoose">Mongoose</a></li>
 </ul>
 <h2>Capturas de tela da aplicação</h2>
-<p>Login</P>
+<p>Entrar com Usuario</P>
 <img src="readme/teladelogin.png" alt="tela de Login">
+<p>Entrar com senha</p>
 <img src="readme/teladelogin2.png" alt="tela de Login">
 <p>Pagina das tarefas listadas</p>
 <img src="readme/tarefas.png" alt="tela das tarefas listadas">
@@ -25,6 +26,6 @@
 <img src="readme/novastarefas.png" alt="tela para adicionar novas tarefas">
 <hr>
 <h2>Autor</h2>
-<img src="readme/autor.jpg" alt="foto do autor">
+<img src="readme/autor.jpg" width="300" alt="foto do autor">
 <h3>Igor Silva</h3>
 <p>Estudante de Programação e fascinado por computação</p>
