@@ -18,3 +18,6 @@
 </ul>
 <hr>
 <h2>Autor</h2>
+<img src="">
+<h3>Igor Silva</h3>
+<p>Estudante de Programação e fascinado por computaçaõ</p>
