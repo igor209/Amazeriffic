@@ -17,14 +17,14 @@
 </ul>
 <h2>Capturas de tela da aplicação</h2>
 <p>Login</P>
-<img src="readme/teladelogin" alt="tela de Login">
-<img src="readme/teladelogin2" alt="tela de Login">
+<img src="readme/teladelogin.png" alt="tela de Login">
+<img src="readme/teladelogin2.png" alt="tela de Login">
 <p>Pagina das tarefas listadas</p>
-<img src="readme/tarefas" alt="tela das tarefas listadas">
+<img src="readme/tarefas.png" alt="tela das tarefas listadas">
 <p>add novas tarefas</P>
-<img src="readme/novastarefas" alt="tela para adicionar novas tarefas">
+<img src="readme/novastarefas.png" alt="tela para adicionar novas tarefas">
 <hr>
 <h2>Autor</h2>
-<img src="readme/autor" alt="foto do autor">
+<img src="readme/autor.jpg" alt="foto do autor">
 <h3>Igor Silva</h3>
 <p>Estudante de Programação e fascinado por computação</p>
